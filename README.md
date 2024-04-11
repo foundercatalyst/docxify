@@ -30,24 +30,24 @@ gem install docxify
 @docx.add_paragraph "Highlighted text", background: "#FFFF99"
 @docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>.", inline_styling: false
 
-@docx.add_paragraph "1.1.1\tBody copy", tab_stops: [DocXify.cm(2)]
-@docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops: [DocXify.cm(2)]
-@docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops: [DocXify.cm(2)]
+@docx.add_paragraph "1.1.1\tBody copy", tab_stops_cm: [2]
+@docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]
+@docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops_cm: [2]
 
 @docx.add_numbered_list_item "This is a list item", level: 0
 
 @docx.add_page_break
 @docx.add_divider
 
-@docx.add_image "file_path or data", align: :right, height: DocXify.cm(2), width: DocXify.cm(4)
+@docx.add_image "file_path or data", align: :right, height_cm: 2, width_cm: 4
 
 headers = [
-  DocXify::TableCell.new("<b>Header 1</b>")
-  DocXify::TableCell.new("<b>Header 2</b>")
+  DocXify::Element::TableCell.new("<b>Header 1</b>"),
+  DocXify::Element::TableCell.new("<b>Header 2</b>")
 ]
 row = [
-  DocXify::TableCell.new("Content <b>here</b>", valign: :center, align: :left, nowrap: true, colspan: 3)
-  DocXify::TableCell.new("Content <b>here</b>")
+  DocXify::Element::TableCell.new("Content <b>here</b>", valign: :center, align: :left, nowrap: true, colspan: 3),
+  DocXify::Element::TableCell.new("Content <b>here</b>")
 ]
 rows = [row]
 @docx.add_table headers, rows, expand: :full
@@ -58,7 +58,7 @@ docx_binary_data = @docx.render
 
 # All of the above add_* are also available as objects for more dynamic control
 
-para = DocXify::Paragraph.new()
+para = DocXify::Element::Paragraph.new()
 para.content = "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>."
 para.font = "Something"
 para.size = 18

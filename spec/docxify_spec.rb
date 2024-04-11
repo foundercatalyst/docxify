@@ -1,5 +1,5 @@
-RSpec.describe Docxify do
+RSpec.describe DocXify do
   it "has a version number" do
-    expect(Docxify::VERSION).not_to be nil
+    expect(DocXify::VERSION).not_to be nil
   end
 end

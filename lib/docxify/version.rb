@@ -1,3 +1,3 @@
-module Docxify
-  VERSION = "0.0.1".freeze
+module DocXify
+  VERSION = "0.0.2".freeze
 end

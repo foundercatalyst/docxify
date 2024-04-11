@@ -2,7 +2,7 @@ require_relative "lib/docxify/version"
 
 Gem::Specification.new do |spec|
   spec.name = "docxify"
-  spec.version = Docxify::VERSION
+  spec.version = DocXify::VERSION
   spec.authors = ["Andy Jeffries"]
   spec.email = ["andy@andyjeffries.co.uk"]
 
@@ -29,8 +29,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "rubyzip", "~> 2.3"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
