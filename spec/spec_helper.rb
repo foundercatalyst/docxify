@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "docxify"
 
 RSpec.configure do |config|

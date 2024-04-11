@@ -74,6 +74,12 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+### Overall architecture
+
+The main object created by users is a `DocXify::Document`. This builds up a `@content` instance variable containing an array of all of the elements. Each element has a `to_s` method that will convert it's current state to a string, ready for insertion in to a complete document.
+
+The `render` method on a `DocXify::Document` will generate a complete `document.xml` (Word terminology not a Ruby method) by creating a template and iterating each `@content` item. It will then create a `DocXify::Container` with that `document.xml` to generate a complete Zipped DocX file, and call it's `render` method to generate an in-memory file. This is then either returned to the `render` caller, or if a file path was passed as the first attribute, then it writes it out.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at <https://github.com/andyjeffries/docxify>.
