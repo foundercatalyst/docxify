@@ -5,6 +5,7 @@ AllCops:
     - 'Gemfile'
     - 'Rakefile'
     - 'spec/**/*.rb'
+    - 'vendor/**/*'
 Style/FormatStringToken:
   EnforcedStyle: unannotated
 Style/FetchEnvVar:
