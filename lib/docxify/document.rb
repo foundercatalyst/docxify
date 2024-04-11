@@ -12,7 +12,7 @@ module DocXify
       @size = options[:size] || 12
       @color = options[:color] || 12
       @background = options[:background] if options[:background]
-      @margins = {top: 2, bottom: 2, left: 2, right: 2}
+      @margins = { top: 2, bottom: 2, left: 2, right: 2 }
     end
 
     def default_styling(options = {})
@@ -90,8 +90,5 @@ module DocXify
     end
 
     # MARK: Private
-
-    private
-
   end
 end

@@ -1,0 +1,308 @@
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/**/*.rb'
+Style/FormatStringToken:
+  EnforcedStyle: unannotated
+Style/FetchEnvVar:
+  Enabled: false
+Style/StringChars:
+  Enabled: false
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
+Metrics/ClassLength:
+  Enabled: false
+Naming/MethodParameterName:
+  Enabled: false
+Lint/SuppressedException:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Layout/HashAlignment:
+  Enabled: false
+Layout/ArgumentAlignment:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Layout/SpaceBeforeSemicolon:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Lint/RescueException:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+# Prefer &&/|| over and/or.
+Style/AndOr:
+  Enabled: true
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+# Align `when` with `case`.
+Layout/CaseIndentation:
+  Enabled: false
+
+Layout/ClosingHeredocIndentation:
+  Enabled: true
+
+# Align comments with method definitions.
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/ElseAlignment:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+# Align `end` with the matching keyword or starting expression except for
+# assignments, where it should be aligned with the LHS.
+Layout/EndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: variable
+  AutoCorrect: true
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
+# In a regular class definition, no empty lines around the body.
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+
+# In a regular method definition, no empty lines around the body.
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# In a regular module definition, no empty lines around the body.
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+# Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
+Style/HashSyntax:
+  Enabled: true
+  EnforcedShorthandSyntax: never
+
+Layout/FirstArgumentIndentation:
+  Enabled: true
+
+Style/RescueModifier:
+  Enabled: false
+
+# Method definitions after `private` or `protected` isolated calls need one
+# extra level of indentation.
+Layout/IndentationConsistency:
+  Enabled: false
+
+# Two spaces, no tabs (for indentation).
+Layout/IndentationWidth:
+  Enabled: true
+
+Layout/LeadingCommentSpace:
+  Enabled: true
+
+Layout/SpaceAfterColon:
+  Enabled: true
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Layout/SpaceAfterSemicolon:
+  Enabled: true
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+Layout/SpaceBeforeComma:
+  Enabled: true
+
+Layout/SpaceBeforeComment:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+
+Style/DefWithParentheses:
+  Enabled: true
+
+Style/MethodDefParentheses:
+  Enabled: true
+
+Style/RedundantFreeze:
+  Enabled: true
+
+# Use `foo {}` not `foo{}`.
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+# Use `foo { bar }` not `foo {bar}`.
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyleForEmptyBraces: space
+
+# Use `{ a: 1 }` not `{a:1}`.
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
+
+# Check quotes usage according to lint rule below.
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+  - single_quotes
+  - double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Style/HashLikeCase:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Detect hard tabs, no hard tabs.
+Layout/IndentationStyle:
+  Enabled: true
+
+# Empty lines should not have any spaces.
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+# No trailing whitespace.
+Layout/TrailingWhitespace:
+  Enabled: true
+
+# Use quotes for string literals when they are enough.
+Style/RedundantPercentQ:
+  Enabled: true
+
+Lint/AmbiguousOperator:
+  Enabled: true
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: true
+
+Lint/ErbNewArguments:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+# Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
+Lint/RequireParentheses:
+  Enabled: true
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
+  Enabled: true
+
+Lint/UriEscapeUnescape:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
+
+Lint/DeprecatedClassMethods:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: false
+
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/RedundantBegin:
+  Enabled: true
+
+Style/RedundantReturn:
+  Enabled: true
+  AllowMultipleReturnValues: true
+
+Style/Semicolon:
+  Enabled: true
+  AllowAsExpressionSeparator: true
+
+# Prefer Foo.method over Foo::method
+Style/ColonMethodCall:
+  Enabled: true
+
+Style/TrivialAccessors:
+  Enabled: true
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/RedundantParentheses:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false

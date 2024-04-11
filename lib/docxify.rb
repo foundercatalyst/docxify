@@ -22,7 +22,7 @@ module DocXify
   # Used for most sizes
   def self.cm2dxa(value)
     value = value.to_f
-    raise ArgumentError, "Value must be greater than or equal to 0" if value < 0
+    raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
     value * UNITS_PER_CM
   end
@@ -30,7 +30,7 @@ module DocXify
   # Used for font sizes
   def self.pt2halfpt(value)
     value = value.to_f
-    raise ArgumentError, "Value must be greater than or equal to 0" if value < 0
+    raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
     value * 2
   end
@@ -38,8 +38,8 @@ module DocXify
   # Used for image sizes
   def self.cm2emu(value)
     value = value.to_f
-    raise ArgumentError, "Value must be greater than or equal to 0" if value < 0
+    raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
-    value * 360000
+    value * 360_000
   end
 end
