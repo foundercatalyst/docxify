@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.3
+
+Features:
+
+- Dividers and page breaks implemented
+- Simple HTML parsing (for paragraphs) implemented
+
 ## 0.0.2
 
 Features:

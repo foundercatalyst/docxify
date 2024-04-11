@@ -1,14 +1,13 @@
 module DocXify
   module SpecHelpers
     def docx_equal(contents1, contents2)
-      # Unzip both sets of content
       zip1 = Zip::File.open_buffer(contents1)
       zip2 = Zip::File.open_buffer(contents2)
 
-      # This isn't ideal, it could have two separate lists of files the same size
-      # But given we're generating both files, that's highly unlikely
-      return false if zip1.count != zip2.count
+      # Check that both zips contain exactly the same list of files
+      return false if zip1.entries.map(&:name) != zip2.entries.map(&:name)
 
+      # Check that the files in each zip when decompressed are exactly the same
       zip1.each do |entry|
         file1 = entry.get_input_stream.read
         file2 = zip2.find_entry(entry.name).get_input_stream.read

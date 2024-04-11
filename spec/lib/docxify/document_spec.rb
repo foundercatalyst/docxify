@@ -21,8 +21,8 @@ RSpec.describe DocXify::Document do
 
     # docx.add_numbered_list_item "This is a list item", level: 0
 
-    # docx.add_page_break
-    # docx.add_divider
+    docx.add_page_break
+    docx.add_divider
 
     # docx.add_image File.read("spec/fixtures/sample.png"), align: :right, height_cm: 2, width_cm: 4
 

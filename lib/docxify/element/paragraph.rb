@@ -4,8 +4,7 @@ module DocXify
       attr_accessor :text, :font, :size, :color, :background, :align, :inline_styling, :tab_stops_cm
 
       def initialize(document, text, options = {})
-        super()
-        @document = document
+        super(document)
         @text = text
         @font = options[:font] || document.font
         @size = options[:size] || document.size
@@ -18,8 +17,17 @@ module DocXify
       end
 
       def to_s(_container = nil)
-        # TODO: Implement all optionality
-        "<w:p><w:r><w:t xml:space=\"preserve\">#{@text}</w:t></w:r></w:p>"
+        nodes = if @inline_styling
+          parse_simple_html(@text)
+        else
+          [@text]
+        end
+
+        xml = "<w:p>"
+        nodes.each do |node|
+          xml << "<w:r><w:t xml:space=\"preserve\">#{node}</w:t></w:r>"
+        end
+        xml << "</w:p>"
       end
     end
   end
