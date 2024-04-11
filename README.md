@@ -6,16 +6,66 @@ If you've ever wanted to generate a Word Document containing a letter or a contr
 
 Install the gem and add to the application's Gemfile by executing:
 
-    bundle add docxify
+```sh
+bundle add docxify
+```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    gem install docxify
+```sh
+gem install docxify
+```
 
 ## Usage
 
 ```ruby
-@docx = DocXify::Document.new()
+@docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT)
+
+@docx.default_styling font: "Serif font here", size: 14, color: "#040404"
+
+@docx.add_paragraph "Title", font: "Something", size: 18, color: "#00000"
+@docx.add_paragraph "Body copy"
+@docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>."
+@docx.add_paragraph "Centred text", align: :center
+@docx.add_paragraph "Highlighted text", background: "#FFFF99"
+@docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>.", inline_styling: false
+
+@docx.add_paragraph "1.1.1\tBody copy", tab_stops: [DocXify.cm(2)]
+@docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops: [DocXify.cm(2)]
+@docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops: [DocXify.cm(2)]
+
+@docx.add_numbered_list_item "This is a list item", level: 0
+
+@docx.add_page_break
+@docx.add_divider
+
+@docx.add_image "file_path or data", align: :right, height: DocXify.cm(2), width: DocXify.cm(4)
+
+headers = [
+  DocXify::TableCell.new("<b>Header 1</b>")
+  DocXify::TableCell.new("<b>Header 2</b>")
+]
+row = [
+  DocXify::TableCell.new("Content <b>here</b>", valign: :center, align: :left, nowrap: true, colspan: 3)
+  DocXify::TableCell.new("Content <b>here</b>")
+]
+rows = [row]
+@docx.add_table headers, rows, expand: :full
+
+docx_binary_data = @docx.render
+# or
+@docx.render "file_path"
+
+# All of the above add_* are also available as objects for more dynamic control
+
+para = DocXify::Paragraph.new()
+para.content = "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>."
+para.font = "Something"
+para.size = 18
+para.color = "#040404"
+para.background = "#FFFF99"
+para.align = :center
+@docx.add para
 ```
 
 ## Development
