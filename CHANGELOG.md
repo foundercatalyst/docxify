@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.4
+
+Features:
+
+- Image insertion is working
+
 ## 0.0.3
 
 Features:

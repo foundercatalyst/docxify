@@ -64,7 +64,7 @@ module DocXify
     end
 
     def add_image(file_path_or_data, options = {})
-      file = DocXify::Element::File.new(self, file_path_or_data, options)
+      file = DocXify::Element::File.new(self, file_path_or_data)
       @images << file
       add DocXify::Element::Image.new(self, file, options)
     end
@@ -88,7 +88,5 @@ module DocXify
     def add_table(headers, rows, options = {})
       add DocXify::Element::Table.new(self, headers, rows, options)
     end
-
-    # MARK: Private
   end
 end

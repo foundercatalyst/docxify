@@ -36,9 +36,12 @@ module DocXify
         zip.put_next_entry "word/document.xml"
         zip.write document.build_xml(self)
 
+        zip.put_next_entry "word/_rels/document.xml.rels"
+        zip.write document_xml_rels
+
         @document.images.each do |image|
           zip.put_next_entry "word/media/#{image.filename}"
-          zip.write image.file_contents
+          zip.write image.data
         end
       end
 

@@ -15,6 +15,8 @@ module DocXify
         <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
           <Default ContentType="application/vnd.openxmlformats-package.relationships+xml" Extension="rels"/>
           <Default ContentType="application/xml" Extension="xml"/>
+          <Default ContentType="image/png" Extension="png"/>
+          <Default ContentType="image/jpeg" Extension="jpg"/>
           <Override ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml" PartName="/word/document.xml"/>
           <Override ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml" PartName="/word/styles.xml"/>
           <Override ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml" PartName="/word/settings.xml"/>

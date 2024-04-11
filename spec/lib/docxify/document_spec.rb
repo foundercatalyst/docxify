@@ -25,7 +25,9 @@ RSpec.describe DocXify::Document do
     docx.add_page_break
     docx.add_divider
 
-    # docx.add_image File.read("spec/fixtures/sample.png"), align: :right, height_cm: 2, width_cm: 4
+    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345678")
+
+    docx.add_image "spec/fixtures/sample.png", align: :right, height_cm: 2, width_cm: 4
 
     # headers = [
     #   DocXify::Element::TableCell.new("<b>Header 1</b>"),

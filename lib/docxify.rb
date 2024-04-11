@@ -2,8 +2,10 @@ require_relative "docxify/version"
 require_relative "docxify/document"
 require_relative "docxify/container"
 require_relative "docxify/template"
+
 require_relative "docxify/element/base"
 require_relative "docxify/element/divider"
+require_relative "docxify/element/file"
 require_relative "docxify/element/image"
 require_relative "docxify/element/numbered_list_item"
 require_relative "docxify/element/page_break"
@@ -24,7 +26,7 @@ module DocXify
     value = value.to_f
     raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
-    value * UNITS_PER_CM
+    (value * UNITS_PER_CM).to_i
   end
 
   # Used for font sizes
@@ -32,7 +34,7 @@ module DocXify
     value = value.to_f
     raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
-    value * 2
+    (value * 2).to_i
   end
 
   # Used for image sizes
@@ -40,6 +42,6 @@ module DocXify
     value = value.to_f
     raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
-    value * 360_000
+    (value * 360_000).to_i
   end
 end
