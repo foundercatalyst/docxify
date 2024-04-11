@@ -1,3 +1,7 @@
+require "highline/import"
+
+require "spec_helper"
+
 RSpec.describe DocXify::Document do
   it "generates a sample document correctly" do
     docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT)
@@ -34,7 +38,19 @@ RSpec.describe DocXify::Document do
     # docx.add_table headers, rows, expand: :full
 
     docx_binary_data = docx.render
+    sample_data = File.read("spec/fixtures/sample.docx", mode: "rb")
+    docs_are_same = docx_equal(docx_binary_data, sample_data)
 
-    expect(docx_binary_data).to eq(File.read("spec/fixtures/sample.docx"))
+    if !docs_are_same && $stdin.tty?
+      input = ask "Do you want to copy the sample document over the fixtures? (YES/no):"
+      if input.downcase.split("").first == "y" || input.strip == ""
+        File.write("spec/fixtures/sample.docx", docx_binary_data, mode: "wb")
+        sample_data = docx_binary_data
+      else
+        File.write("tmp/test_run.docx", docx_binary_data, mode: "wb")
+      end
+    end
+
+    expect(docs_are_same).to be_truthy
   end
 end
