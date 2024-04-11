@@ -25,10 +25,11 @@ gem install docxify
 
 @docx.add_paragraph "Title", font: "Something", size: 18, color: "#00000"
 @docx.add_paragraph "Body copy"
-@docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>."
+@docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
+@docx.add_paragraph "Text can also contain <a href='foo'>Links</a>."
 @docx.add_paragraph "Centred text", align: :center
 @docx.add_paragraph "Highlighted text", background: "#FFFF99"
-@docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>. It can also contain <a href='foo'>Links</a>.", inline_styling: false
+@docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
 @docx.add_paragraph "1.1.1\tBody copy", tab_stops_cm: [2]
 @docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]
