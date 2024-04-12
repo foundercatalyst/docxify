@@ -9,8 +9,8 @@ module DocXify
 
       attr_accessor :data, :filename
 
-      def initialize(document, file_path_or_data)
-        super(document)
+      def initialize(file_path_or_data)
+        super()
         load_file_data(file_path_or_data)
       end
 

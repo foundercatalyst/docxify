@@ -3,8 +3,8 @@ module DocXify
     class Image < Base
       attr_accessor :file, :align, :height_cm, :width_cm
 
-      def initialize(document, file, options = {})
-        super(document)
+      def initialize(file, options = {})
+        super()
         @file = file
 
         @align = options[:align] || :left
@@ -16,10 +16,24 @@ module DocXify
         rand(1_000_000_000)
       end
 
-      # 6h x 10.53w
       def to_s(_container = nil)
-        <<~XML
-          <w:p>
+        xml = "<w:p>"
+
+        if @align == :right
+          xml << <<~XML
+            <w:pPr>
+              <w:jc w:val="right"/>
+            </w:pPr>
+          XML
+        elsif @align == :center
+          xml << <<~XML
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          XML
+        end
+
+        xml << <<~XML
             <w:r>
               <w:rPr>
                 <w:noProof/>

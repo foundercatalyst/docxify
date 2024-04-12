@@ -16,18 +16,24 @@ RSpec.describe DocXify::Document do
     # @docx.add_paragraph "Highlighted text", background: "#FFFF99"
     # @docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
-    # docx.add_paragraph "1.1.1\tBody copy", tab_stops_cm: [2]
+    # docx.add_paragraph "\t1.1.1\tBody copy", tab_stops_cm: [1, 2]
     # docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]
     # docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops_cm: [2]
-
-    # docx.add_numbered_list_item "This is a list item", level: 0
 
     docx.add_page_break
     docx.add_divider
 
-    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345678")
+    file = docx.add_file "spec/fixtures/sample.png"
 
-    docx.add_image "spec/fixtures/sample.png", align: :right, height_cm: 2, width_cm: 4
+    # Use allow_any_instance_of to assign them different but known IDs for exact recreatabilty of the sample document
+    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345678")
+    docx.add_image file, height_cm: 2, width_cm: 4
+
+    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345679")
+    docx.add_image file, align: :center, height_cm: 2, width_cm: 4
+
+    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345680")
+    docx.add_image file, align: :right, height_cm: 2, width_cm: 4
 
     # headers = [
     #   DocXify::Element::TableCell.new("<b>Header 1</b>"),

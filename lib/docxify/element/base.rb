@@ -1,10 +1,6 @@
 module DocXify
   module Element
     class Base
-      def initialize(document)
-        @document = document
-      end
-
       def to_s(container = nil)
         raise NotImplementedError
       end

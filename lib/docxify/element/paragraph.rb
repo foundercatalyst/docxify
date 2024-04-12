@@ -3,14 +3,15 @@ module DocXify
     class Paragraph < Base
       attr_accessor :text, :font, :size, :color, :background, :align, :inline_styling, :tab_stops_cm
 
-      def initialize(document, text, options = {})
-        super(document)
+      def initialize(text, options = {})
+        super()
+        @document = options[:document]
         @text = text
-        @font = options[:font] || document.font
-        @size = options[:size] || document.size
-        @color = options[:color] || document.color
+        @font = options[:font] || @document&.font || "Times New Roman"
+        @size = options[:size] || @document&.size || 14
+        @color = options[:color] || @document&.color || "#000000"
         @background = options[:background] if options[:background]
-        @background ||= document.background if document.background
+        @background ||= @document&.background if @document&.background
         @align = options[:align] || :left
         @inline_styling = options[:inline_styling] || true
         @tab_stops_cm = options[:tab_stops_cm] || []

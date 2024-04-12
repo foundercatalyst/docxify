@@ -31,11 +31,9 @@ gem install docxify
 @docx.add_paragraph "Highlighted text", background: "#FFFF99"
 @docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
-@docx.add_paragraph "1.1.1\tBody copy", tab_stops_cm: [2]
+@docx.add_paragraph "\t1.1.1\tBody copy", tab_stops_cm: [1, 2]
 @docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]
 @docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops_cm: [2]
-
-@docx.add_numbered_list_item "This is a list item", level: 0
 
 @docx.add_page_break
 @docx.add_divider
