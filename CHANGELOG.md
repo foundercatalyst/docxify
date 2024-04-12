@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.5
+
+Features:
+
+- Paragraph font name, size, colour and yellow highlight done
+- Document level default font name, size and colour done
+
 ## 0.0.4
 
 Features:

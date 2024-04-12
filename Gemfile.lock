@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    docxify (0.0.4)
+    docxify (0.0.5)
       rubyzip (~> 2.3)
 
 GEM

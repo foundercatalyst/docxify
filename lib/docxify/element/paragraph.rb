@@ -10,6 +10,7 @@ module DocXify
         @font = options[:font] || @document&.font || "Times New Roman"
         @size = options[:size] || @document&.size || 14
         @color = options[:color] || @document&.color || "#000000"
+        @highlight = options[:highlight] || false
         @background = options[:background] if options[:background]
         @background ||= @document&.background if @document&.background
         @align = options[:align] || :left
@@ -25,10 +26,26 @@ module DocXify
         end
 
         xml = "<w:p>"
+        xml << <<~XML
+          <w:pPr>
+            <w:jc w:val="#{@align}"/>
+          </w:pPr>
+        XML
+        xml << "<w:r>"
+        xml << <<~XML
+          <w:rPr>
+            <w:rFonts w:ascii="#{@font}" w:cs="#{@font}" w:hAnsi="#{@font}"/>
+            <w:color w:val="#{@color.gsub("#", "")}"/>
+            <w:sz w:val="#{DocXify.pt2halfpt(@size)}"/>
+            <w:szCs w:val="#{DocXify.pt2halfpt(@size)}"/>
+            #{"<w:highlight w:val=\"yellow\"/>" if @highlight}
+          </w:rPr>
+        XML
+
         nodes.each do |node|
-          xml << "<w:r><w:t xml:space=\"preserve\">#{node}</w:t></w:r>"
+          xml << "<w:t xml:space=\"preserve\">#{node}</w:t>"
         end
-        xml << "</w:p>"
+        xml << "</w:r></w:p>"
       end
     end
   end

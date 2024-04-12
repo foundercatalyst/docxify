@@ -8,13 +8,18 @@ RSpec.describe DocXify::Document do
 
     docx.default_styling font: "Times New Roman", size: 14, color: "#040404"
 
-    docx.add_paragraph "Title", font: "Arial", size: 18, color: "#00000"
+    expect(docx.font).to eq("Times New Roman")
+    expect(docx.size).to eq(14)
+    expect(docx.color).to eq("#040404")
+
+    docx.add_paragraph "Title", font: "Arial", size: 18, color: "#000000"
     docx.add_paragraph "Body copy"
-    # @docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
-    # @docx.add_paragraph "Text can also contain <a href='foo'>Links</a>."
-    # @docx.add_paragraph "Centred text", align: :center
-    # @docx.add_paragraph "Highlighted text", background: "#FFFF99"
-    # @docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
+    # docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
+    # docx.add_paragraph "Text can also contain <a href='foo'>Links</a>."
+    docx.add_paragraph "Centred text", align: :center
+    docx.add_paragraph "Right-aligned text", align: :right
+    docx.add_paragraph "Highlighted text", highlight: true
+    # docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
     # docx.add_paragraph "\t1.1.1\tBody copy", tab_stops_cm: [1, 2]
     # docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]

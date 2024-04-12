@@ -78,10 +78,6 @@ module DocXify
       file
     end
 
-    def add_numbered_list_item(text, level: 0)
-      add DocXify::Element::NumberedListItem.new(text, level: level)
-    end
-
     def add_page_break
       add DocXify::Element::PageBreak.new
     end
