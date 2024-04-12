@@ -14,16 +14,19 @@ RSpec.describe DocXify::Document do
 
     docx.add_paragraph "Title", font: "Arial", size: 18, color: "#000000"
     docx.add_paragraph "Body copy"
-    # docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
-    # docx.add_paragraph "Text can also contain <a href='foo'>Links</a>."
+    docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
+    docx.add_paragraph "Text can also contain <a href='https://www.google.com'>Links</a>."
     docx.add_paragraph "Centred text", align: :center
     docx.add_paragraph "Right-aligned text", align: :right
     docx.add_paragraph "Highlighted text", highlight: true
-    # docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
+    docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
-    # docx.add_paragraph "\t1.1.1\tBody copy", tab_stops_cm: [1, 2]
-    # docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [2]
-    # docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops_cm: [2]
+    docx.add_paragraph "1.\tHeading", tab_stops_cm: [1, 2]
+    docx.add_paragraph "\t1.1\tSubheading", tab_stops_cm: [1, 2], hanging_cm: 2
+    docx.add_paragraph "\t1.1.1\tBody copy\twith spaced out", tab_stops_cm: [1, 2, 10], hanging_cm: 2
+
+    docx.add_paragraph "{CHECKBOX_EMPTY}\tEmpty checkbox", tab_stops_cm: [0.5]
+    docx.add_paragraph "{CHECKBOX_CHECKED}\tChecked checkbox", tab_stops_cm: [0.5]
 
     docx.add_page_break
     docx.add_divider

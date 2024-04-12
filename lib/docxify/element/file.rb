@@ -34,6 +34,10 @@ module DocXify
         "image-#{Digest::SHA1.hexdigest(@data)[0, 8]}"
       end
 
+      def to_s
+        "<Relationship Id=\"#{reference}\" Target=\"media/#{filename}\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\"/>"
+      end
+
       def contains_png_image?(data)
         data[0, 8] == PNG_SIGNATURE
       end

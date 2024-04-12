@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.6
+
+Features:
+
+- Tab stops and hanging indents done
+- Replacing of {CHECKBOX_EMPTY} and {CHECKBOX_CHECKED} with correct UTF-8 characters done
+
 ## 0.0.5
 
 Features:

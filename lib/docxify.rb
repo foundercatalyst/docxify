@@ -10,6 +10,7 @@ require_relative "docxify/element/image"
 require_relative "docxify/element/page_break"
 require_relative "docxify/element/paragraph"
 require_relative "docxify/element/table"
+require_relative "docxify/element/web_address"
 
 module DocXify
   class Error < StandardError; end

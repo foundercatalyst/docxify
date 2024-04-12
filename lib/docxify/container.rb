@@ -39,9 +39,11 @@ module DocXify
         zip.put_next_entry "word/_rels/document.xml.rels"
         zip.write document_xml_rels
 
-        @document.images.each do |image|
-          zip.put_next_entry "word/media/#{image.filename}"
-          zip.write image.data
+        @document.relationships.each do |relation|
+          if relation.is_a?(DocXify::Element::File)
+            zip.put_next_entry "word/media/#{relation.filename}"
+            zip.write relation.data
+          end
         end
       end
 
@@ -64,8 +66,8 @@ module DocXify
           <Relationship Id="rId4" Target="fontTable.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable"/>
       XML
 
-      @document.images.each do |image|
-        xml << "<Relationship Id=\"#{image.reference}\" Target=\"media/#{image.filename}\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\"/>"
+      @document.relationships.each do |relation|
+        xml << relation.to_s
       end
 
       xml << "</Relationships>"

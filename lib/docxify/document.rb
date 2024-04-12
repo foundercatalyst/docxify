@@ -1,11 +1,11 @@
 module DocXify
   class Document
     attr_accessor :font, :size, :color, :background
-    attr_reader :content, :images
+    attr_reader :content, :relationships
 
     def initialize(options = {})
       @content = []
-      @images = []
+      @relationships = []
       @width = options[:width] || A4_PORTRAIT_WIDTH
       @height = options[:height] || A4_PORTRAIT_HEIGHT
       @font = options[:font] || "Times New Roman"
@@ -74,7 +74,7 @@ module DocXify
 
     def add_file(file_path_or_data)
       file = DocXify::Element::File.new(file_path_or_data)
-      @images << file
+      @relationships << file
       file
     end
 

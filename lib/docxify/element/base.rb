@@ -22,7 +22,7 @@ module DocXify
             if char == "<"
               state = :tag
               tag = ""
-              result << text.strip unless text.strip.empty?
+              result << text unless text.empty?
               text = ""
             else
               text << char
@@ -61,7 +61,7 @@ module DocXify
           when :content # With the content of an HTML tag
             if char == "<"
               state = :tag
-              result.last[:content] = content.strip
+              result.last[:content] = content
               content = ""
             else
               content << char
@@ -71,7 +71,7 @@ module DocXify
           last_char = char
         end
 
-        result << text.strip unless text.strip.empty?
+        result << text unless text.empty?
         result
       end
     end
