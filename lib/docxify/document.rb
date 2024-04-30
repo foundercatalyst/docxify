@@ -1,7 +1,7 @@
 module DocXify
   class Document
     attr_accessor :font, :size, :color, :background
-    attr_reader :content, :relationships
+    attr_reader :content, :relationships, :width
 
     def initialize(options = {})
       @content = []
@@ -91,8 +91,9 @@ module DocXify
       add DocXify::Element::Paragraph.new(text, options)
     end
 
-    def add_table(headers, rows, options = {})
-      add DocXify::Element::Table.new(headers, rows, options)
+    def add_table(rows, options = {})
+      options[:document] = self
+      add DocXify::Element::Table.new(rows, options)
     end
   end
 end

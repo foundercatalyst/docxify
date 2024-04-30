@@ -10,6 +10,7 @@ require_relative "docxify/element/image"
 require_relative "docxify/element/page_break"
 require_relative "docxify/element/paragraph"
 require_relative "docxify/element/table"
+require_relative "docxify/element/table_cell"
 require_relative "docxify/element/web_address"
 
 module DocXify
@@ -27,6 +28,14 @@ module DocXify
     raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
 
     (value * UNITS_PER_CM).to_i
+  end
+
+  # Inverse of cm2dxa
+  def self.dxa2cm(value)
+    value = value.to_f
+    raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
+
+    (value / UNITS_PER_CM).to_i
   end
 
   # Used for font sizes

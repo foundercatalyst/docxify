@@ -43,16 +43,28 @@ RSpec.describe DocXify::Document do
     allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345680")
     docx.add_image file, align: :right, height_cm: 2, width_cm: 4
 
-    # headers = [
-    #   DocXify::Element::TableCell.new("<b>Header 1</b>"),
-    #   DocXify::Element::TableCell.new("<b>Header 2</b>")
-    # ]
-    # row = [
-    #   DocXify::Element::TableCell.new("Content <b>here</b>", valign: :center, align: :left, nowrap: true, colspan: 3),
-    #   DocXify::Element::TableCell.new("Content <b>here</b>")
-    # ]
-    # rows = [row]
-    # docx.add_table headers, rows, expand: :full
+    docx.add_page_break
+
+    # docx.container page_width: DocXify::A4_PORTRAIT_HEIGHT, page_height: DocXify::A4_PORTRAIT_WIDTH do |container|
+    rows = []
+    rows << [
+      DocXify::Element::TableCell.new("<b>Header 1</b>", width_cm: 6),
+      DocXify::Element::TableCell.new("<b>Header 2</b>", width_cm: 4),
+      DocXify::Element::TableCell.new("<b>Header 3</b>", width_cm: 4),
+      DocXify::Element::TableCell.new("<b>Header 4</b>", width_cm: 4)
+    ]
+    rows << [
+      DocXify::Element::TableCell.new("Test attributes <b>here</b>", valign: :center, align: :center, nowrap: true, colspan: 3, font: "Arial", size: 18, color: "#ff0000"),
+      DocXify::Element::TableCell.new("Content <b>here</b>", valign: :center, borders: %i[top left right], rowspan: true)
+    ]
+    rows << [
+      DocXify::Element::TableCell.new("Fresh 1"),
+      DocXify::Element::TableCell.new("Fresh 2"),
+      DocXify::Element::TableCell.new("Fresh 3"),
+      DocXify::Element::TableCell.new(nil, borders: %i[bottom left right])
+    ]
+    docx.add_table rows
+    # end
 
     docx_binary_data = docx.render
     sample_data = File.read("spec/fixtures/sample.docx", mode: "rb")
@@ -63,6 +75,7 @@ RSpec.describe DocXify::Document do
       if input.downcase.split("").first == "y" || input.strip == ""
         File.write("spec/fixtures/sample.docx", docx_binary_data, mode: "wb")
         sample_data = docx_binary_data
+        puts "‼️ Check the file is visually correct before committing back to source control."
       else
         File.write("tmp/test_run.docx", docx_binary_data, mode: "wb")
       end

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.7
+
+Features:
+
+- Table support
+
 ## 0.0.6
 
 Features:
