@@ -1,6 +1,6 @@
 module DocXify
   class Document
-    attr_accessor :font, :size, :color, :background
+    attr_accessor :font, :size, :color, :background, :margins, :page_layout
     attr_reader :content, :relationships, :width
 
     def initialize(options = {})
@@ -8,11 +8,12 @@ module DocXify
       @relationships = []
       @width = options[:width] || A4_PORTRAIT_WIDTH
       @height = options[:height] || A4_PORTRAIT_HEIGHT
+      @orientation = options[:orientation] || :portrait
       @font = options[:font] || "Times New Roman"
       @size = options[:size] || 12
       @color = options[:color] || 12
       @background = options[:background] if options[:background]
-      @margins = { top: 2, bottom: 2, left: 2, right: 2 }
+      @margins = { top: 2, bottom: 2, left: 2, right: 2 }.merge(options[:margins] || {})
     end
 
     def default_styling(options = {})
@@ -41,17 +42,21 @@ module DocXify
           <w:body>
       XML
 
+      # See the note in DocXify::Element::PageLayout for why it's not just handled the same as any other element
+      @page_layout = DocXify::Element::PageLayout.new(width: @width, height: @height, orientation: @orientatation, document: self)
+
       @content.each do |element|
-        xml << element.to_s(container)
+        if element.is_a?(DocXify::Element::PageLayout)
+          xml << @page_layout.to_s
+          @page_layout = element
+        else
+          xml << element.to_s(container)
+        end
       end
 
+      xml << @page_layout.to_s
+
       xml << <<~XML
-            <w:sectPr >
-              <w:pgSz w:h="#{@height}" w:w="#{@width}"/>
-              <w:pgMar w:bottom="#{DocXify.cm2dxa @margins[:bottom]}" w:footer="708" w:gutter="0" w:header="708" w:left="#{DocXify.cm2dxa @margins[:left]}" w:right="#{DocXify.cm2dxa @margins[:right]}" w:top="#{DocXify.cm2dxa @margins[:top]}"/>
-              <w:cols w:space="708"/>
-              <w:docGrid w:linePitch="360"/>
-            </w:sectPr>
           </w:body>
         </w:document>
       XML
@@ -80,6 +85,11 @@ module DocXify
 
     def add_page_break
       add DocXify::Element::PageBreak.new
+    end
+
+    def add_page_layout(options = {})
+      options[:document] = self
+      add DocXify::Element::PageLayout.new(options)
     end
 
     def add_divider

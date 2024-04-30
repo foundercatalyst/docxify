@@ -45,7 +45,8 @@ RSpec.describe DocXify::Document do
 
     docx.add_page_break
 
-    # docx.container page_width: DocXify::A4_PORTRAIT_HEIGHT, page_height: DocXify::A4_PORTRAIT_WIDTH do |container|
+    docx.add_page_layout width: DocXify::A4_PORTRAIT_HEIGHT, height: DocXify::A4_PORTRAIT_WIDTH, orientation: :landscape
+
     rows = []
     rows << [
       DocXify::Element::TableCell.new("<b>Header 1</b>", width_cm: 6),
@@ -64,7 +65,6 @@ RSpec.describe DocXify::Document do
       DocXify::Element::TableCell.new(nil, borders: %i[bottom left right])
     ]
     docx.add_table rows
-    # end
 
     docx_binary_data = docx.render
     sample_data = File.read("spec/fixtures/sample.docx", mode: "rb")

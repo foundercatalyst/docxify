@@ -41,26 +41,26 @@ gem install docxify
 
 @docx.add_page_break
 
-@docx.container page_width: DocXify::A4_PORTRAIT_HEIGHT, page_height: DocXify::A4_PORTRAIT_WIDTH do |container|
-  rows = []
-  rows << [
-    DocXify::Element::TableCell.new("<b>Header 1</b>"),
-    DocXify::Element::TableCell.new("<b>Header 2</b>")
-    DocXify::Element::TableCell.new("<b>Header 3</b>")
-    DocXify::Element::TableCell.new("<b>Header 4</b>", width_cm: 10)
-  ]
-  rows << [
-    DocXify::Element::TableCell.new("Content 1", valign: :center, align: :left, nowrap: true, colspan: 3),
-    DocXify::Element::TableCell.new("Rowspan <b>here</b>", rowspan: true) # merges until a "nil" cell
-  ]
-  rows << [
-    DocXify::Element::TableCell.new("Secondary 1")
-    DocXify::Element::TableCell.new("Secondary 2")
-    DocXify::Element::TableCell.new("Secondary 3")
-    DocXify::Element::TableCell.new(nil) # Word requires that there's an empty cell merged with the previous rowspan
-  ]
-  container.add_table rows
-end
+@docx.page_layout width: DocXify::A4_PORTRAIT_HEIGHT, height: DocXify::A4_PORTRAIT_WIDTH, orientation: :landscape
+
+rows = []
+rows << [
+  DocXify::Element::TableCell.new("<b>Header 1</b>"),
+  DocXify::Element::TableCell.new("<b>Header 2</b>")
+  DocXify::Element::TableCell.new("<b>Header 3</b>")
+  DocXify::Element::TableCell.new("<b>Header 4</b>", width_cm: 10)
+]
+rows << [
+  DocXify::Element::TableCell.new("Content 1", valign: :center, align: :left, nowrap: true, colspan: 3),
+  DocXify::Element::TableCell.new("Rowspan <b>here</b>", rowspan: true) # merges until a "nil" cell
+]
+rows << [
+  DocXify::Element::TableCell.new("Secondary 1")
+  DocXify::Element::TableCell.new("Secondary 2")
+  DocXify::Element::TableCell.new("Secondary 3")
+  DocXify::Element::TableCell.new(nil) # Word requires that there's an empty cell merged with the previous rowspan
+]
+container.add_table rows
 
 docx_binary_data = @docx.render
 # or

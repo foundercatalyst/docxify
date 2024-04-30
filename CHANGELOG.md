@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.8
+
+Features:
+
+- Allow changing of following section's page layout
+
 ## 0.0.7
 
 Features:

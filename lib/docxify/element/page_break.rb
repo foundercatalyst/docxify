@@ -8,7 +8,6 @@ module DocXify
               <w:br w:type="page"/>
             </w:r>
           </w:p>
-          <w:p/>
         XML
       end
     end
