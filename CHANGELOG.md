@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.1.0
+
+Features:
+
+- Implemented Document#bounds_width and Document#bounds_height
+
+## 0.0.9
+
+Features:
+
+- Fixed page layout loading
+
 ## 0.0.8
 
 Features:

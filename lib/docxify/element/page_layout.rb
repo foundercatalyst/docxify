@@ -15,6 +15,15 @@ module DocXify
         @orientation = options[:orientation] || :portrait
       end
 
+      # Don't consider this part of the public API, they're used by Document if it's been created
+      def bounds_width
+        @width - @margins[:left] - @margins[:right]
+      end
+
+      def bounds_height
+        @height - @margins[:top] - @margins[:bottom]
+      end
+
       def to_s(_container = nil)
         <<~XML
           <w:p>

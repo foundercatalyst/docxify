@@ -6,6 +6,8 @@ RSpec.describe DocXify::Document do
   it "generates a sample document correctly" do
     docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT)
 
+    expect(docx.bounds_width).to eq(DocXify::A4_PORTRAIT_WIDTH - 2 - 2)
+
     docx.default_styling font: "Times New Roman", size: 14, color: "#040404"
 
     expect(docx.font).to eq("Times New Roman")
@@ -46,6 +48,8 @@ RSpec.describe DocXify::Document do
     docx.add_page_break
 
     docx.add_page_layout width: DocXify::A4_PORTRAIT_HEIGHT, height: DocXify::A4_PORTRAIT_WIDTH, orientation: :landscape
+
+    expect(docx.bounds_width).to eq(DocXify::A4_PORTRAIT_HEIGHT - 2 - 2)
 
     rows = []
     rows << [

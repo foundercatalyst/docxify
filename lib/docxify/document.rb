@@ -16,6 +16,14 @@ module DocXify
       @margins = { top: 2, bottom: 2, left: 2, right: 2 }.merge(options[:margins] || {})
     end
 
+    def bounds_width
+      @page_layout&.bounds_width || (@width - @margins[:left] - @margins[:right])
+    end
+
+    def bounds_height
+      @page_layout&.bounds_height || (@height - @margins[:top] - @margins[:bottom])
+    end
+
     def default_styling(options = {})
       @font = options[:font] if options[:font]
       @size = options[:size] if options[:size]
@@ -89,7 +97,8 @@ module DocXify
 
     def add_page_layout(options = {})
       options[:document] = self
-      add DocXify::Element::PageLayout.new(options)
+      @page_layout = DocXify::Element::PageLayout.new(options)
+      add @page_layout
     end
 
     def add_divider
