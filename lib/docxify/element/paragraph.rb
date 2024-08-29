@@ -21,10 +21,10 @@ module DocXify
 
       def to_s(_container = nil)
         nodes = if @inline_styling
-          parse_simple_html(@text)
-        else
-          [@text.gsub("<", "&lt;").gsub(">", "&gt;")]
-        end
+                  parse_simple_html(@text)
+                else
+                  [@text.gsub("<", "&lt;").gsub(">", "&gt;")]
+                end
 
         xml = "<w:p>"
 
@@ -58,9 +58,9 @@ module DocXify
               <w:sz w:val="#{DocXify.pt2halfpt(@size)}"/>
               <w:szCs w:val="#{DocXify.pt2halfpt(@size)}"/>
               #{"<w:highlight w:val=\"yellow\"/>" if @highlight}
-              #{"<w:b/><w:bCs/>" if node.is_a?(Hash) && node[:tag] == "b"}
-              #{"<w:i/><w:iCs/>" if node.is_a?(Hash) && node[:tag] == "i"}
-              #{"<w:u w:val=\"single\"/>" if node.is_a?(Hash) && (node[:tag] == "u" || node[:tag] == "a")}
+              #{"<w:b/><w:bCs/>" if node.is_a?(Hash) && node[:tag].match?("b")}
+              #{"<w:i/><w:iCs/>" if node.is_a?(Hash) && node[:tag].match?("i")}
+              #{"<w:u w:val=\"single\"/>" if node.is_a?(Hash) && (node[:tag].match?("u") || node[:tag] == "a")}
               #{"<w:rStyle w:val=\"Hyperlink\"/>" if node.is_a?(Hash) && node[:tag] == "a"}
             </w:rPr>
           XML
