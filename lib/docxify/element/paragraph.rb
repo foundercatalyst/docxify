@@ -21,10 +21,10 @@ module DocXify
 
       def to_s(_container = nil)
         nodes = if @inline_styling
-                  parse_simple_html(@text)
-                else
-                  [@text.gsub("<", "&lt;").gsub(">", "&gt;")]
-                end
+          parse_simple_html(@text)
+        else
+          [@text.gsub("<", "&lt;").gsub(">", "&gt;")]
+        end
 
         xml = "<w:p>"
 

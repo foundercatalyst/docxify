@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.1
+
+Features:
+
+- Allow combining bold, italic and underline on a single element (thanks to @b0nn1e for the PR)
+
 ## 0.1.0
 
 Features:
