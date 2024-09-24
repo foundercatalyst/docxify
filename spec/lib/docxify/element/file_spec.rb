@@ -9,7 +9,7 @@ RSpec.describe DocXify::Element::File do
         file = DocXify::Element::File.new(file_path)
 
         expect(file.data).to eq(File.read(file_path, mode: "rb"))
-        expect(file.filename).to eq("sample.png")
+        expect(file.filename).to eq("4ade6a327cd0c24a785c9d0f6425557096eb64fa.png")
       end
     end
 

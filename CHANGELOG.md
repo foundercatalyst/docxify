@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.5
+
+Bugfix:
+
+- Should insert image with correct aspect ratio if only one dimension is specified
+
 ## 0.1.4
 
 Bugfix:

@@ -7,7 +7,7 @@ module DocXify
       JPEG_START = "\xFF\xD8".b.freeze
       JPEG_END = "\xFF\xD9".b.freeze
 
-      attr_accessor :data, :filename
+      attr_accessor :data, :filename, :width, :height
 
       def initialize(file_path_or_data)
         super()
@@ -15,16 +15,16 @@ module DocXify
       end
 
       def load_file_data(file_path_or_data)
-        if ::File.exist?(file_path_or_data)
+        if (::File.exist?(file_path_or_data) rescue false)
           file_path_or_data = ::File.read(file_path_or_data, mode: "rb")
         end
 
-        if contains_png_image?(file_path_or_data)
-          @data = file_path_or_data
-          @filename = "#{Digest::SHA1.hexdigest(@data)}.png"
-        elsif contains_jpeg_image?(file_path_or_data)
-          @data = file_path_or_data
-          @filename = "#{Digest::SHA1.hexdigest(@data)}.jpg"
+        @data = file_path_or_data
+
+        if contains_png_image?(data)
+          @filename = "#{Digest::SHA1.hexdigest(data)}.png"
+        elsif contains_jpeg_image?(data)
+          @filename = "#{Digest::SHA1.hexdigest(data)}.jpg"
         else
           raise ArgumentError.new("Unsupported file type - images must be PNG or JPEG")
         end

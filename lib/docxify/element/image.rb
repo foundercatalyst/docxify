@@ -1,3 +1,5 @@
+require "image_size"
+
 module DocXify
   module Element
     class Image < Base
@@ -9,8 +11,25 @@ module DocXify
 
         @align = options[:align] || :left
         @after = options[:after]
-        @height_cm = options[:height_cm] || 5
-        @width_cm = options[:width_cm] || 5
+        @height_cm = options[:height_cm]
+        @width_cm = options[:width_cm]
+
+        image_size = ImageSize.new(StringIO.new(file.data))
+
+        if @height_cm.nil? || @width_cm.nil?
+          @width = image_size.width
+          @height = image_size.height
+        end
+
+        if @height_cm.nil? && @width_cm.nil?
+          @height_cm = 5
+        end
+
+        if @height_cm.nil?
+          @height_cm = @width_cm * image_size.height / image_size.width
+        elsif @width_cm.nil?
+          @width_cm = @height_cm * image_size.width / image_size.height
+        end
       end
 
       def id
