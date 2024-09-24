@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.4
+
+Bugfix:
+
+- Removed accidentally left debug statement
+
 ## 0.1.3
 
 Bugfix:
