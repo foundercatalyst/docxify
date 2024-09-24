@@ -15,16 +15,18 @@ module DocXify
       end
 
       def load_file_data(file_path_or_data)
+        if ::File.exist?(file_path_or_data)
+          file_path_or_data = ::File.read(file_path_or_data, mode: "rb")
+        end
+
         if contains_png_image?(file_path_or_data)
           @data = file_path_or_data
           @filename = "#{Digest::SHA1.hexdigest(@data)}.png"
+          puts "Contains PNG image #{@filename}"
         elsif contains_jpeg_image?(file_path_or_data)
           @data = file_path_or_data
           @filename = "#{Digest::SHA1.hexdigest(@data)}.jpg"
-        elsif ::File.exist?(file_path_or_data)
-          @filename = ::File.basename(file_path_or_data)
-          @data = ::File.read(file_path_or_data, mode: "rb")
-          raise ArgumentError.new("Unsupported file type - images must be PNG or JPEG") unless contains_png_image?(@data) || contains_jpeg_image?(@data)
+          puts "Contains JPEG image #{@filename}"
         else
           raise ArgumentError.new("Unsupported file type - images must be PNG or JPEG")
         end

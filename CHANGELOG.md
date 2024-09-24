@@ -1,10 +1,16 @@
 # CHANGELOG
 
+## 0.1.3
+
+Bugfix:
+
+- Files that contain a PNG but weren't named ending in .png (e.g. a Tempfile in Ruby) were causing corrupted Docx files (which Word could auto-recover)
+
 ## 0.1.2
 
 Features:
 
-- "Add 'after' to images and paragraphs to adjust spacing after those elements
+- Add 'after' to images and paragraphs to adjust spacing after those elements
 
 ## 0.1.1
 
