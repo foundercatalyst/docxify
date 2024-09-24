@@ -92,4 +92,4 @@ The `render` method on a `DocXify::Document` will generate a complete `document.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at <https://github.com/andyjeffries/docxify>.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/foundercatalyst/docxify>.

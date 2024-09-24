@@ -3,8 +3,8 @@ require_relative "lib/docxify/version"
 Gem::Specification.new do |spec|
   spec.name = "docxify"
   spec.version = DocXify::VERSION
-  spec.authors = ["Andy Jeffries"]
-  spec.email = ["andy@andyjeffries.co.uk"]
+  spec.authors = ["Andy Jeffries", "FounderCatalyst Ltd"]
+  spec.email = ["andy@foundercatalyst.com"]
 
   spec.summary = "DocXify is a gem to help you generate Word documents from Ruby."
   spec.description = "Using a relatively simple DSL, you can generate Word DocX documents from Ruby."
