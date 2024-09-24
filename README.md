@@ -23,7 +23,7 @@ gem install docxify
 
 @docx.default_styling font: "Serif font here", size: 14, color: "#040404"
 
-@docx.add_paragraph "Title", font: "Something", size: 18, color: "#00000"
+@docx.add_paragraph "Title", font: "Something", size: 18, color: "#00000", after: 18
 @docx.add_paragraph "Body copy"
 @docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u>."
 @docx.add_paragraph "Text can also contain <a href='foo'>Links</a>."
@@ -37,7 +37,7 @@ gem install docxify
 
 @docx.add_divider
 
-@docx.add_image "file_path or data", align: :right, height_cm: 2, width_cm: 4
+@docx.add_image "file_path or data", align: :right, height_cm: 2, width_cm: 4, after: 18
 
 @docx.add_page_break
 

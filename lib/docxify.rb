@@ -47,6 +47,14 @@ module DocXify
     (value * 2).to_i
   end
 
+  # Used for spacing
+  def self.pt2spacing(value)
+    value = value.to_f
+    raise ArgumentError.new("Value must be greater than or equal to 0") if value.negative?
+
+    (value * 20).to_i
+  end
+
   # Used for image sizes
   def self.cm2emu(value)
     value = value.to_f

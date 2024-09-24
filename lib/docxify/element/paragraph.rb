@@ -14,6 +14,7 @@ module DocXify
         @background = options[:background] if options[:background]
         @background ||= @document&.background if @document&.background
         @align = options[:align] || :left
+        @after = options[:after]
         @inline_styling = options.key?(:inline_styling) ? options[:inline_styling] : true
         @tab_stops_cm = options[:tab_stops_cm] || []
         @hanging_cm = options[:hanging_cm] || 0
@@ -30,6 +31,7 @@ module DocXify
 
         xml << "<w:pPr>"
         xml << "<w:jc w:val=\"#{@align}\"/>" if @align != :left
+        xml << "<w:spacing w:after=\"#{DocXify.pt2spacing @after}\"/>" if @after
 
         if tab_stops_cm.any?
           xml << "<w:tabs>"

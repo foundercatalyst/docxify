@@ -14,7 +14,7 @@ RSpec.describe DocXify::Document do
     expect(docx.size).to eq(14)
     expect(docx.color).to eq("#040404")
 
-    docx.add_paragraph "Title", font: "Arial", size: 18, color: "#000000"
+    docx.add_paragraph "Title", font: "Arial", size: 18, color: "#000000", after: 12
     docx.add_paragraph "Body copy"
     docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u> and <b><i><u>Combined</u></i></b>."
     docx.add_paragraph "Text can also contain <a href='https://www.google.com'>Links</a>."
@@ -43,6 +43,9 @@ RSpec.describe DocXify::Document do
     docx.add_image file, align: :center, height_cm: 2, width_cm: 4
 
     allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345680")
+    docx.add_image file, align: :right, height_cm: 2, width_cm: 4, after: 20
+
+    allow_any_instance_of(DocXify::Element::Image).to receive(:id).and_return("12345681")
     docx.add_image file, align: :right, height_cm: 2, width_cm: 4
 
     docx.add_page_break

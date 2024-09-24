@@ -8,6 +8,7 @@ module DocXify
         @file = file
 
         @align = options[:align] || :left
+        @after = options[:after]
         @height_cm = options[:height_cm] || 5
         @width_cm = options[:width_cm] || 5
       end
@@ -19,19 +20,16 @@ module DocXify
       def to_s(_container = nil)
         xml = "<w:p>"
 
+        xml << "<w:pPr>"
         if @align == :right
-          xml << <<~XML
-            <w:pPr>
-              <w:jc w:val="right"/>
-            </w:pPr>
-          XML
+          xml << "<w:jc w:val=\"right\"/>"
         elsif @align == :center
-          xml << <<~XML
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-          XML
+          xml << "<w:jc w:val=\"center\"/>"
         end
+
+        xml << "<w:spacing w:after=\"#{DocXify.pt2spacing @after}\"/>" if @after
+
+        xml << "</w:pPr>"
 
         xml << <<~XML
             <w:r>

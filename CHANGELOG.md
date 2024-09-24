@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.2
+
+Features:
+
+- "Add 'after' to images and paragraphs to adjust spacing after those elements
+
 ## 0.1.1
 
 Features:
