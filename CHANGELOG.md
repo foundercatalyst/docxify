@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.6
+
+Bugfix:
+
+- Stop additional page being added after content. Add known issue.
+
 ## 0.1.5
 
 Bugfix:

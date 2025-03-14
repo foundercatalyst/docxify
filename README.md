@@ -90,6 +90,10 @@ The main object created by users is a `DocXify::Document`. This builds up a `@co
 
 The `render` method on a `DocXify::Document` will generate a complete `document.xml` (Word terminology not a Ruby method) by creating a template and iterating each `@content` item. It will then create a `DocXify::Container` with that `document.xml` to generate a complete Zipped DocX file, and call it's `render` method to generate an in-memory file. This is then either returned to the `render` caller, or if a file path was passed as the first attribute, then it writes it out.
 
+### Known issues
+
+The only known issue is that it doesn't like mixing and matching page orientations. If you start a document as portrait or landscape, it's fine, but it really doesn't like a single page being in a different orientation.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at <https://github.com/foundercatalyst/docxify>.

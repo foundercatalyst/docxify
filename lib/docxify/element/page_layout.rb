@@ -12,7 +12,7 @@ module DocXify
         @margins = @document.margins
         @width = options[:width] || @document&.width || DocXify::A4_PORTRAIT_WIDTH
         @height = options[:height] || @document&.height || DocXify::A4_PORTRAIT_HEIGHT
-        @orientation = options[:orientation] || :portrait
+        @orientation = options[:orientation]
       end
 
       # Don't consider this part of the public API, they're used by Document if it's been created
@@ -26,16 +26,12 @@ module DocXify
 
       def to_s(_container = nil)
         <<~XML
-          <w:p>
-            <w:pPr>
-              <w:sectPr>
-                <w:pgSz w:w="#{@width}" w:h="#{@height}" w:orient="#{@orientation}"/>
-                <w:pgMar w:bottom="#{DocXify.cm2dxa @margins[:bottom]}" w:footer="708" w:gutter="0" w:header="708" w:left="#{DocXify.cm2dxa @margins[:left]}" w:right="#{DocXify.cm2dxa @margins[:right]}" w:top="#{DocXify.cm2dxa @margins[:top]}"/>
-                <w:cols w:space="708"/>
-                <w:docGrid w:linePitch="360"/>
-              </w:sectPr>
-            </w:pPr>
-          </w:p>
+          <w:sectPr>
+            <w:pgSz w:w="#{@width}" w:h="#{@height}" #{'w:orient="portrait}"' if @orientation.to_s == "portrait"} #{'w:orient="landscape}"' if @orientation.to_s == "landscape"} />
+            <w:pgMar w:bottom="#{DocXify.cm2dxa @margins[:bottom]}" w:footer="708" w:gutter="0" w:header="708" w:left="#{DocXify.cm2dxa @margins[:left]}" w:right="#{DocXify.cm2dxa @margins[:right]}" w:top="#{DocXify.cm2dxa @margins[:top]}"/>
+            <w:cols w:space="708"/>
+            <w:docGrid w:linePitch="360"/>
+          </w:sectPr>
         XML
       end
     end

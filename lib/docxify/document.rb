@@ -8,7 +8,7 @@ module DocXify
       @relationships = []
       @width = options[:width] || A4_PORTRAIT_WIDTH
       @height = options[:height] || A4_PORTRAIT_HEIGHT
-      @orientation = options[:orientation] || :portrait
+      @orientation = options[:orientation]
       @font = options[:font] || "Times New Roman"
       @size = options[:size] || 12
       @color = options[:color] || 12

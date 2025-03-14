@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe DocXify::Document do
   it "generates a sample document correctly" do
-    docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT)
+    docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT, orientation: :portrait)
 
     expect(docx.bounds_width).to eq(DocXify::A4_PORTRAIT_WIDTH - 2 - 2)
 
