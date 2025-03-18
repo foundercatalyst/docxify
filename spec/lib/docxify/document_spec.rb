@@ -62,7 +62,7 @@ RSpec.describe DocXify::Document do
       DocXify::Element::TableCell.new("<b>Header 4</b>", width_cm: 4)
     ]
     rows << [
-      DocXify::Element::TableCell.new("Test attributes <b>here</b>", valign: :center, align: :center, nowrap: true, colspan: 3, font: "Arial", size: 18, color: "#ff0000"),
+      DocXify::Element::TableCell.new("Test attributes <b>here</b> <mark>highlighted</mark>", valign: :center, align: :center, nowrap: true, colspan: 3, font: "Arial", size: 18, color: "#ff0000"),
       DocXify::Element::TableCell.new("Content <b>here</b>", valign: :center, borders: %i[top left right], rowspan: true)
     ]
     rows << [
