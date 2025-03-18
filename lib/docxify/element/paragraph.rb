@@ -59,7 +59,7 @@ module DocXify
               <w:color w:val="#{@color.gsub("#", "")}"/>
               <w:sz w:val="#{DocXify.pt2halfpt(@size)}"/>
               <w:szCs w:val="#{DocXify.pt2halfpt(@size)}"/>
-              #{"<w:highlight w:val=\"yellow\"/>" if @highlight}
+              #{"<w:highlight w:val=\"yellow\"/>" if @highlight || (node.is_a?(Hash) && node[:tag].match?("mark"))}
               #{"<w:b/><w:bCs/>" if node.is_a?(Hash) && node[:tag].match?("b")}
               #{"<w:i/><w:iCs/>" if node.is_a?(Hash) && node[:tag].match?("i")}
               #{"<w:u w:val=\"single\"/>" if node.is_a?(Hash) && (node[:tag].match?("u") || node[:tag] == "a")}

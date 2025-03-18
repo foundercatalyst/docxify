@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.7
+
+Feature:
+
+- Add ability to inline highlight parts
+
 ## 0.1.6
 
 Bugfix:

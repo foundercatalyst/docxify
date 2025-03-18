@@ -16,11 +16,11 @@ RSpec.describe DocXify::Document do
 
     docx.add_paragraph "Title", font: "Arial", size: 18, color: "#000000", after: 12
     docx.add_paragraph "Body copy"
-    docx.add_paragraph "This is <b>bold</b>, <i>Italic</i> and <u>Underlined</u> and <b><i><u>Combined</u></i></b>."
+    docx.add_paragraph "This is <b>bold</b>, <i>italic</i>, <mark>highlighted</mark>, <u>underlined</u> and <b><i><u>combined</u></i></b>."
     docx.add_paragraph "Text can also contain <a href='https://www.google.com'>Links</a>."
     docx.add_paragraph "Centred text", align: :center
     docx.add_paragraph "Right-aligned text", align: :right
-    docx.add_paragraph "Highlighted text", highlight: true
+    docx.add_paragraph "Highlighted line", highlight: true
     docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
     docx.add_paragraph "1.\tHeading", tab_stops_cm: [1, 2]
