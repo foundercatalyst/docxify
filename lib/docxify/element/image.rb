@@ -37,7 +37,7 @@ module DocXify
       end
 
       def to_s(_container = nil)
-        xml = "<w:p>"
+        xml = +"<w:p>"
 
         xml << "<w:pPr>"
         if @align == :right

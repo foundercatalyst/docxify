@@ -21,6 +21,7 @@ RSpec.describe DocXify::Document do
     docx.add_paragraph "Centred text", align: :center
     docx.add_paragraph "Right-aligned text", align: :right
     docx.add_paragraph "Highlighted line", highlight: true
+
     docx.add_paragraph "This won't show as <b>bold</b>", inline_styling: false
 
     docx.add_paragraph "1.\tHeading", tab_stops_cm: [1, 2]

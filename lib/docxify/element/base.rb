@@ -9,10 +9,10 @@ module DocXify
 
       def parse_simple_html(html)
         state = :text
-        tag = ""
-        content = ""
+        tag = +""
+        content = +""
         result = []
-        text = ""
+        text = +""
         last_char = ""
 
         html.each_char do |char|
@@ -21,16 +21,16 @@ module DocXify
           when :text # This is a text node, not part of an HTML tag
             if char == "<"
               state = :tag
-              tag = ""
+              tag = +""
               result << text unless text.empty?
-              text = ""
+              text = +""
             else
               text << char
             end
           when :tag # Within an HTML tag itself
             if char == ">"
               state = :content
-              content = ""
+              content = +""
               tag_name, *attributes = tag.split
               tag_name.gsub!(/\s*\//, "")
               attributes.delete_if { |attr| attr == "/" }
@@ -62,7 +62,7 @@ module DocXify
             if char == "<"
               state = :tag
               result.last[:content] = content
-              content = ""
+              content = +""
             else
               content << char
             end

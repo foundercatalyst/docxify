@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.8
+
+Bugfix:
+
+- Fix FrozenError when used with `--enable=frozen-string-literal` (RUBYOPT); all mutable string accumulators now initialised with `+""` or `+<<~HEREDOC`
+
 ## 0.1.7
 
 Feature:

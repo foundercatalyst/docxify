@@ -28,7 +28,7 @@ module DocXify
       end
 
       def to_s(_container = nil)
-        xml = ""
+        xml = +""
         xml << table_element_start
         xml << table_properties
         xml << table_grid
@@ -44,7 +44,7 @@ module DocXify
       end
 
       def table_properties
-        xml = ""
+        xml = +""
         xml << "<w:tblPr>"
         xml << '<w:tblStyle w:val="TableGrid"/>'
         xml << '<w:tblW w:type="auto" w:w="0"/>'
@@ -63,7 +63,7 @@ module DocXify
         default_equal_width = (@document.width / @rows.first.size).to_i
 
         @column_widths = []
-        xml = "<w:tblGrid>"
+        xml = +"<w:tblGrid>"
         @rows.first.each do |cell|
           width = if cell.width_cm
             DocXify.cm2dxa(cell.width_cm)
@@ -79,7 +79,7 @@ module DocXify
       end
 
       def table_row(row)
-        xml = "<w:tr>"
+        xml = +"<w:tr>"
         widths = @column_widths.dup
         row.each do |cell|
           if cell.nil?

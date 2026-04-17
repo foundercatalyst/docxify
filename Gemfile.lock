@@ -51,7 +51,7 @@ GEM
     rubocop-ast (1.31.2)
       parser (>= 3.3.0.4)
     ruby-progressbar (1.13.0)
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     strscan (3.1.0)
     unicode-display_width (2.5.0)
 
@@ -67,4 +67,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.5.6
+  4.0.0

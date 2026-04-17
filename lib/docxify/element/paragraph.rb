@@ -27,7 +27,7 @@ module DocXify
           [@text.gsub("<", "&lt;").gsub(">", "&gt;")]
         end
 
-        xml = "<w:p>"
+        xml = +"<w:p>"
 
         xml << "<w:pPr>"
         xml << "<w:jc w:val=\"#{@align}\"/>" if @align != :left

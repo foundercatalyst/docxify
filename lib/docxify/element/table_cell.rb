@@ -6,7 +6,7 @@ module DocXify
       def initialize(content, options = {})
         super()
         @content = content
-        @valign = options[:valign] || :top
+        @valign = (options[:valign] if %i[top center bottom].include?(options[:valign])) || :top
         @align = options[:align] || :left
         @nowrap = options[:nowrap]
         @colspan = options[:colspan]
@@ -15,11 +15,15 @@ module DocXify
         @font = options[:font]
         @size = options[:size]
         @color = options[:color]
+
         @borders = options[:borders]&.map(&:to_sym) || []
+        if @borders.include?(:all)
+          @borders = %i[top bottom left right]
+        end
       end
 
       def to_s
-        xml = "<w:tc>"
+        xml = +"<w:tc>"
         xml << "<w:tcPr>"
         xml << %Q(<w:tcW w:type="dxa" w:w="#{DocXify.cm2dxa(@width_cm)}"/>)
         if !@colspan.nil? && @colspan.to_i > 1
