@@ -1,3 +1,4 @@
+require "tempfile"
 require "zip"
 
 module DocXify
@@ -12,37 +13,19 @@ module DocXify
       temp_file = Tempfile.new("docxify.zip")
 
       Zip::OutputStream.open(temp_file) do |zip|
-        zip.put_next_entry "_rels/.rels"
-        zip.write DocXify::Template.top_level_rels
-
-        zip.put_next_entry "[Content_Types].xml"
-        zip.write DocXify::Template.content_types
-
-        zip.put_next_entry "word/theme/theme1.xml"
-        zip.write DocXify::Template.theme
-
-        zip.put_next_entry "word/fontTable.xml"
-        zip.write DocXify::Template.font_table
-
-        zip.put_next_entry "word/settings.xml"
-        zip.write DocXify::Template.settings
-
-        zip.put_next_entry "word/styles.xml"
-        zip.write DocXify::Template.styles
-
-        zip.put_next_entry "word/webSettings.xml"
-        zip.write DocXify::Template.web_settings
-
-        zip.put_next_entry "word/document.xml"
-        zip.write document.build_xml(self)
-
-        zip.put_next_entry "word/_rels/document.xml.rels"
-        zip.write document_xml_rels
+        write_entry zip, "_rels/.rels", DocXify::Template.top_level_rels
+        write_entry zip, "[Content_Types].xml", DocXify::Template.content_types
+        write_entry zip, "word/theme/theme1.xml", DocXify::Template.theme
+        write_entry zip, "word/fontTable.xml", DocXify::Template.font_table
+        write_entry zip, "word/settings.xml", DocXify::Template.settings
+        write_entry zip, "word/styles.xml", DocXify::Template.styles
+        write_entry zip, "word/webSettings.xml", DocXify::Template.web_settings
+        write_entry zip, "word/document.xml", document.build_xml(self)
+        write_entry zip, "word/_rels/document.xml.rels", document_xml_rels
 
         @document.relationships.each do |relation|
           if relation.is_a?(DocXify::Element::File)
-            zip.put_next_entry "word/media/#{relation.filename}"
-            zip.write relation.data
+            write_entry zip, "word/media/#{relation.filename}", relation.data
           end
         end
       end
@@ -72,6 +55,17 @@ module DocXify
 
       xml << "</Relationships>"
       xml
+    end
+
+    private
+
+    # Word and other OPC readers reject Zip64 headers. Since rubyzip 3 defaults
+    # to Zip64 for any entry whose size is unknown while its local header is
+    # streamed out, declare the size up front (all entry data is already in
+    # memory) so entries stay in the classic zip format.
+    def write_entry(zip, name, data)
+      zip.put_next_entry Zip::Entry.new(nil, name, size: data.bytesize)
+      zip.write data
     end
   end
 end

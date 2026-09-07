@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.1.9
+
+Security:
+
+- Require rubyzip 3.6+ (`~> 3.6`), fixing CVE-2026-85396 (path traversal in `Zip::Entry#extract` before rubyzip 3.4.0)
+
+Bugfix:
+
+- Entry sizes are now declared up front when writing the docx package, so rubyzip 3 no longer adds ZIP64 headers (version needed to extract 4.5) that OPC readers such as Word and Google Docs reject
+
 ## 0.1.8
 
 Bugfix:

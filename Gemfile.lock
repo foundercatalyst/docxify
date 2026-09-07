@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    docxify (0.1.8)
+    docxify (0.1.9)
       image_size (~> 3.0)
-      rubyzip (~> 2.3)
+      rubyzip (~> 3.6)
 
 GEM
   remote: https://rubygems.org/
@@ -51,7 +51,7 @@ GEM
     rubocop-ast (1.31.2)
       parser (>= 3.3.0.4)
     ruby-progressbar (1.13.0)
-    rubyzip (2.4.1)
+    rubyzip (3.6.0)
     strscan (3.1.0)
     unicode-display_width (2.5.0)
 
