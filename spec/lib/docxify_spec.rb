@@ -1,4 +1,13 @@
 RSpec.describe DocXify do
+  describe "A4 page constants" do
+    it "match Word's A4 page size in twips" do
+      expect(DocXify::A4_PORTRAIT_WIDTH).to eq(11_906)
+      expect(DocXify::A4_PORTRAIT_HEIGHT).to eq(16_838)
+      expect(DocXify::A4_LANDSCAPE_WIDTH).to eq(16_838)
+      expect(DocXify::A4_LANDSCAPE_HEIGHT).to eq(11_906)
+    end
+  end
+
   describe "#cm2dxa" do
     it "should convert a value in centimetres to DXA" do
       expect(DocXify.cm2dxa(2.54)).to eq(1440)

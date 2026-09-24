@@ -1,7 +1,7 @@
 module DocXify
   class Document
     attr_accessor :font, :size, :color, :background, :margins, :page_layout
-    attr_reader :content, :relationships, :width
+    attr_reader :content, :relationships, :width, :height
 
     def initialize(options = {})
       @content = []
@@ -51,7 +51,7 @@ module DocXify
       XML
 
       # See the note in DocXify::Element::PageLayout for why it's not just handled the same as any other element
-      @page_layout = DocXify::Element::PageLayout.new(width: @width, height: @height, orientation: @orientatation, document: self)
+      @page_layout = DocXify::Element::PageLayout.new(width: @width, height: @height, orientation: @orientation, document: self)
 
       @content.each do |element|
         if element.is_a?(DocXify::Element::PageLayout)

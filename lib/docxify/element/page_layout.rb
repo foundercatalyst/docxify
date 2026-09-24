@@ -27,7 +27,7 @@ module DocXify
       def to_s(_container = nil)
         <<~XML
           <w:sectPr>
-            <w:pgSz w:w="#{@width}" w:h="#{@height}" #{'w:orient="portrait}"' if @orientation.to_s == "portrait"} #{'w:orient="landscape}"' if @orientation.to_s == "landscape"} />
+            <w:pgSz w:w="#{@width}" w:h="#{@height}" #{'w:orient="portrait"' if @orientation.to_s == "portrait"} #{'w:orient="landscape"' if @orientation.to_s == "landscape"} />
             <w:pgMar w:bottom="#{DocXify.cm2dxa @margins[:bottom]}" w:footer="708" w:gutter="0" w:header="708" w:left="#{DocXify.cm2dxa @margins[:left]}" w:right="#{DocXify.cm2dxa @margins[:right]}" w:top="#{DocXify.cm2dxa @margins[:top]}"/>
             <w:cols w:space="708"/>
             <w:docGrid w:linePitch="360"/>

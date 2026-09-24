@@ -19,7 +19,7 @@ gem install docxify
 ## Usage
 
 ```ruby
-@docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT)
+@docx = DocXify::Document.new(width: DocXify::A4_PORTRAIT_WIDTH, height: DocXify::A4_PORTRAIT_HEIGHT)
 
 @docx.default_styling font: "Serif font here", size: 14, color: "#040404"
 
@@ -41,7 +41,7 @@ gem install docxify
 
 @docx.add_page_break
 
-@docx.page_layout width: DocXify::A4_PORTRAIT_HEIGHT, height: DocXify::A4_PORTRAIT_WIDTH, orientation: :landscape
+@docx.add_page_layout width: DocXify::A4_PORTRAIT_HEIGHT, height: DocXify::A4_PORTRAIT_WIDTH, orientation: :landscape
 
 rows = []
 rows << [

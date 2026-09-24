@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.1.10
+
+Bugfix:
+
+- `A4_PORTRAIT_HEIGHT` (and so `A4_LANDSCAPE_WIDTH`) was 15840 twips, which is US Letter's 11 inches; it is now A4's 16838, so documents using the default page size come out on A4
+- `w:orient` was written as `"portrait}"` / `"landscape}"` (stray brace), and the `orientation:` passed to `Document.new` was never written at all
+- `Document#height` reader added, so `add_page_layout` without an explicit `height:` no longer raises `NoMethodError`
+- README showed `page_width:`/`page_height:` (ignored; the options are `width:`/`height:`) and `page_layout` instead of `add_page_layout`
+
 ## 0.1.9
 
 Security:

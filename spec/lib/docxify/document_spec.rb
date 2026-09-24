@@ -3,8 +3,27 @@ require "highline/import"
 require "spec_helper"
 
 RSpec.describe DocXify::Document do
+  it "defaults to an A4 portrait page" do
+    xml = DocXify::Document.new.build_xml(nil)
+
+    expect(xml).to include('<w:pgSz w:w="11906" w:h="16838"')
+  end
+
+  it "writes the document's orientation as a valid w:orient value" do
+    xml = DocXify::Document.new(orientation: :landscape).build_xml(nil)
+
+    expect(xml).to include('w:orient="landscape" />')
+  end
+
+  it "adds a page layout that inherits the document's page size" do
+    docx = DocXify::Document.new
+    docx.add_page_layout(orientation: :portrait)
+
+    expect([docx.page_layout.width, docx.page_layout.height]).to eq([11_906, 16_838])
+  end
+
   it "generates a sample document correctly" do
-    docx = DocXify::Document.new(page_width: DocXify::A4_PORTRAIT_WIDTH, page_height: DocXify::A4_PORTRAIT_HEIGHT, orientation: :portrait)
+    docx = DocXify::Document.new(width: DocXify::A4_PORTRAIT_WIDTH, height: DocXify::A4_PORTRAIT_HEIGHT, orientation: :portrait)
 
     expect(docx.bounds_width).to eq(DocXify::A4_PORTRAIT_WIDTH - 2 - 2)
 
